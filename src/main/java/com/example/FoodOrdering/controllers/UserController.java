@@ -1,5 +1,8 @@
 package com.example.FoodOrdering.controllers;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import java.util.List;
@@ -8,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.repository.core.NamedQueries;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterUtils;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -72,18 +78,5 @@ public class UserController {
 		return jdbcTemplate.query(RestaurantQueries.GET_RESTAURANTS, new RestaurantRowMapper());
 	}
 	
-	@GetMapping("/project/call")
-	public int fun(@RequestBody Integer i) {
-		System.out.println("i="+i);
-		return i+1;
-	}
-	
-	@PostMapping("/ABC")
-	public ABC call(@RequestBody ABC abc) {
-		System.out.println(abc.toString());
-		abc.setName("New Abc");
-		abc.setAge(abc.getAge()*10);
-		return abc;
-	}
 	
 }
